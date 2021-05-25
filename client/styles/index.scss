@@ -3,4 +3,49 @@
 html, 
 body {
   font-family: 'Montserrat', sans-serif;
+  text-align: center;
+}
+
+.board {
+  border: solid 1px black;
+  margin: 10px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.frame-container {
+  margin: 20px 10px 0 10px;
+  text-align: center;
+  contain: content;
+}
+
+.frame {
+  display: flex;
+  justify-content: center;
+}
+
+.ball {
+  height: 70px;
+  width: 100%;
+  font-size: larger;
+}
+
+.total {
+  margin: 50px;
+}
+
+.frame-total {
+  margin: 40px 0 0 0;
+}
+
+.strike {
+  background-color: rgb(146, 211, 146);
+}
+
+.spare {
+  background-color: rgb(151, 189, 218);
+}
+
+.strike-spare-text {
+  height: 30px;
 }
