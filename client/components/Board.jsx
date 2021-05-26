@@ -4,7 +4,7 @@ import { scoreFrame, scoreGame } from './score'
 
 function Board () {
     // array of all frames
-    const [frames, setFrames] = useState([[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0]])
+    const [frames, setFrames] = useState([[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0],[0,0,0]])
 
     // totals for individual frames
     const [frameTotals, setFrameTotals] = useState([0,0,0,0,0,0,0,0,0,0])

@@ -1,18 +1,28 @@
 import React, {useEffect, useState} from 'react'
 
 function Frame ({id, frameTotals, updateFramesArray}) {
-    const [balls, setBalls] = useState([0,0])
+    const [balls, setBalls] = useState([0,0,0])
 
     const isStrike = balls[0] === 10 && !isSpare
     const isSpare = balls[0] + balls[1] >= 10
+    const isNinth = id == 9
 
     const handleChange = (evt) => {
         setBalls(curState => {
             const newState = [...curState]
             const index = evt.target.name
-            newState[index] = Number(evt.target.value)
-            if(Number(evt.target.value) > 10 ){
-                console.log('too high')
+            const value = Number(evt.target.value)
+
+            // stop inputs going above 10 or below 0 
+            newState[index] = value
+            const frameTotal = newState[0] + newState[1]
+            if(value < 0){
+                newState[index] = 0
+                return newState
+            }
+            if (frameTotal > 10 & !isNinth || frameTotal < 0 & !isNinth) {
+                newState[index] = 0
+                return newState
             }
             return newState
         })
@@ -31,8 +41,8 @@ function Frame ({id, frameTotals, updateFramesArray}) {
     }
 
     const renderBonusBallOnTenth = () => {
-        if(id == 9){
-            return  <input className='ball' type='number' placeholder='0' name='2' onChange={handleChange}/>
+        if(isNinth){
+            return  <input className='ball' type='number'  name='2' value={balls[2]} onChange={handleChange}/>
         }
     }
 
@@ -42,8 +52,8 @@ function Frame ({id, frameTotals, updateFramesArray}) {
                 <h3 >{renderStrikeSpareText()}</h3>
             </div>
         <div className='frame'>
-                <input className={`ball ${renderStrikeSpareText()}`} placeholder='0' type='number' name="0" onChange={handleChange}/>
-                <input className={`ball ${renderStrikeSpareText()}`} placeholder='0' type='number' name="1" onChange={handleChange}/>
+                <input className={`ball ${renderStrikeSpareText()}`} value={balls[0]}  type='number' name="0" onChange={handleChange}/>
+                <input className={`ball ${renderStrikeSpareText()}`} value={balls[1]}  type='number' name="1" onChange={handleChange}/>
                 {renderBonusBallOnTenth()}
         </div>
         <div className='frame-total'><h3>{frameTotals[id]}</h3></div>
